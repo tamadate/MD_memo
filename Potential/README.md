@@ -12,11 +12,11 @@ $$
         {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}
         -24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}
         {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
-    \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r}_j}=
+    \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r_{j}}}=
         48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r}_j}
+        {\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}
         -24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r}_j}\\
+        {\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}\\
 \end{aligned}
 $$
 
@@ -41,13 +41,13 @@ $$
     \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r_{i}}}=
         {q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}
         {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
-    \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r}_j}=
+    \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r_{j}}}=
         {q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}
-        {\partial \vec{r_{ij}} \over \partial \vec{r}_j}\\
+        {\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}\\
 \end{aligned}
 $$
 
-Where, $\epsilon_0$ is the permittivity of vacuum, $q_i$ and $q_j$ are the partial charges of atoms $i$ and $j$, $\vec{r_{ij}}$ is the distance of atoms $i$ and $j$. Since $\vec{r_{ij}}=\vec{r}_j-\vec{r_{i}}$, the derivatives can be calculated as ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r}_j}=1$, hence,
+Where, $\epsilon_0$ is the permittivity of vacuum, $q_i$ and $q_j$ are the partial charges of atoms $i$ and $j$, $\vec{r_{ij}}$ is the distance of atoms $i$ and $j$. Since $\vec{r_{ij}}=\vec{r_{j}}-\vec{r_{i}}$, the derivatives can be calculated as ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}=1$, hence,
 
 $$
 \begin{aligned}
@@ -61,7 +61,7 @@ While the electrical interaction is able to directory calculate via above equati
 # 2. Many body interaction
 ## 2.1 EAM
 ## 2.2 Tersoff
-The Tersoff potential is described as 
+The Tersoff potential is described as
 
 $$
 \begin{aligned}
@@ -93,11 +93,11 @@ $$
 \begin{aligned}
 U_{bond}&=k_{bond}(\vec{r_{ji}}-r_0)^2\\
 \vec{F}_i&=-{\partial U_{bond} \over \partial \vec{r_{i}}}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
-\vec{F}_j&=-{\partial U_{bond} \over \partial \vec{r}_j}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r}_j}\\
+\vec{F}_j&=-{\partial U_{bond} \over \partial \vec{r_{j}}}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r_{j}}}\\
 \end{aligned}
 $$
 
-Since $\vec{r_{ji}}=\vec{r_{i}}-\vec{r}_j$, the derivatives can be calculated as ${\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}=1$ and ${\partial \vec{r_{ji}} \over \partial \vec{r}_j}=-1$, hence,
+Since $\vec{r_{ji}}=\vec{r_{i}}-\vec{r_{j}}$, the derivatives can be calculated as ${\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}=1$ and ${\partial \vec{r_{ji}} \over \partial \vec{r_{j}}}=-1$, hence,
 
 $$
 \begin{aligned}
@@ -141,24 +141,22 @@ $$
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
     {\partial |r_{ji}| \over \partial \vec{r_{ji}}}
     {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
-
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
     &={-1 \over \sqrt{1-cos^2\theta_{ijk}}}
-    ({\partial \vec{r_{ji}} \over \partial |\vec{r_{ji}}|} 
+    ({\partial \vec{r_{ji}} \over \partial |\vec{r_{ji}}|}
     \cdot {\vec{r_{jk}} \over |\vec{r_{ji}}||\vec{r_{jk}}|}
     +{-1 \over |\vec{r_{ji}}|^2}{\vec{r_{ji}} \cdot \vec{r_{jk}} \over |\vec{r_{jk}}|})\\
     &={-1 \over sin\theta_{ijk}}
-    ({|\vec{r_{ji}}| \over \vec{r_{ji}}} 
+    ({|\vec{r_{ji}}| \over \vec{r_{ji}}}
     \cdot {\vec{r_{jk}} \over |\vec{r_{ji}}||\vec{r_{jk}}|}
     +{-1 \over |\vec{r_{ji}}|}cos\theta_{ijk})\\
     {\partial |\vec{r_{ji}}| \over \partial \vec{r_{ji}}}
     &={\vec{r_{ji}} \over |r_{ji}|}\\
     {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}
-    &={\partial (\vec{r_{i}}-\vec{r}_j) \over \partial \vec{r_{i}}}=1\\
-
+    &={\partial (\vec{r_{i}}-\vec{r_{j}}) \over \partial \vec{r_{i}}}=1\\
     {\partial  \theta_{ijk} \over \partial \vec{r_{i}}}
     &={-1 \over sin\theta_{ijk}}
-    ({|\vec{r_{ji}}| \over \vec{r_{ji}}} 
+    ({|\vec{r_{ji}}| \over \vec{r_{ji}}}
     \cdot {\vec{r_{jk}} \over |\vec{r_{ji}}||\vec{r_{jk}}|}
     -{1 \over |\vec{r_{ji}}|}cos\theta_{ijk})
     {\vec{r_{ji}} \over |r_{ji}|}\\
