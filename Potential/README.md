@@ -133,6 +133,7 @@ $$
 # 4. Angle potential
 ## 4.1 Harmonic
 The harmonic angular potential is expressed as below:
+
 $$
 \begin{aligned}
     U_{angle}&=k_{angle}(\theta_{ijk}-\theta_0)^2\\
