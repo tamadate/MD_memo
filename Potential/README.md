@@ -7,11 +7,11 @@ $$
     U_{LJ}&=4 \epsilon_{ij}
         \{({\sigma_{ij} \over \vec{r_{ij}}})^{12}-
         ({\sigma_{ij} \over \vec{r_{ij}}})^{6}\}\\
-    \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r}_i}=
+    \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r_{i}}}=
         48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r}_i}
+        {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}
         -24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r}_i}\\
+        {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
     \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r}_j}=
         48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
         {\partial \vec{r_{ij}} \over \partial \vec{r}_j}
@@ -38,16 +38,16 @@ The Coulombic pair potential and its forces are expressed as below:
 $$
 \begin{aligned}
     U_{Coul}&={q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}}\\
-    \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r}_i}=
+    \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r_{i}}}=
         {q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}
-        {\partial \vec{r_{ij}} \over \partial \vec{r}_i}\\
+        {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
     \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r}_j}=
         {q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}
         {\partial \vec{r_{ij}} \over \partial \vec{r}_j}\\
 \end{aligned}
 $$
 
-Where, $\epsilon_0$ is the permittivity of vacuum, $q_i$ and $q_j$ are the partial charges of atoms $i$ and $j$, $\vec{r_{ij}}$ is the distance of atoms $i$ and $j$. Since $\vec{r_{ij}}=\vec{r}_j-\vec{r}_i$, the derivatives can be calculated as ${\partial \vec{r_{ij}} \over \partial \vec{r}_i}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r}_j}=1$, hence,
+Where, $\epsilon_0$ is the permittivity of vacuum, $q_i$ and $q_j$ are the partial charges of atoms $i$ and $j$, $\vec{r_{ij}}$ is the distance of atoms $i$ and $j$. Since $\vec{r_{ij}}=\vec{r}_j-\vec{r_{i}}$, the derivatives can be calculated as ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r}_j}=1$, hence,
 
 $$
 \begin{aligned}
@@ -92,12 +92,12 @@ The harmonic bond potential and forces working to two atoms are expressed as bel
 $$
 \begin{aligned}
 U_{bond}&=k_{bond}(\vec{r_{ji}}-r_0)^2\\
-\vec{F}_i&=-{\partial U_{bond} \over \partial \vec{r}_i}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r}_i}\\
+\vec{F}_i&=-{\partial U_{bond} \over \partial \vec{r_{i}}}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
 \vec{F}_j&=-{\partial U_{bond} \over \partial \vec{r}_j}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r}_j}\\
 \end{aligned}
 $$
 
-Since $\vec{r_{ji}}=\vec{r}_i-\vec{r}_j$, the derivatives can be calculated as ${\partial \vec{r_{ji}} \over \partial \vec{r}_i}=1$ and ${\partial \vec{r_{ji}} \over \partial \vec{r}_j}=-1$, hence,
+Since $\vec{r_{ji}}=\vec{r_{i}}-\vec{r}_j$, the derivatives can be calculated as ${\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}=1$ and ${\partial \vec{r_{ji}} \over \partial \vec{r}_j}=-1$, hence,
 
 $$
 \begin{aligned}
@@ -119,7 +119,7 @@ The forces working to each atoms, $i$, $j$, and $k$ are
 
 $$
 \begin{aligned}
-    \vec{F}_i&=-{\partial U_{angle} \over \partial \vec{r}_i}=-2k_{angle}(\theta_{ijk}-\theta_0){\partial \theta_{ijk} \over \partial \vec{r}_i}\\
+    \vec{F}_i&=-{\partial U_{angle} \over \partial \vec{r_{i}}}=-2k_{angle}(\theta_{ijk}-\theta_0){\partial \theta_{ijk} \over \partial \vec{r_{i}}}\\
     \vec{F}_k&=-{\partial U_{angle} \over \partial \vec{r}_{k}}=-2k_{angle}(\theta_{ijk}-\theta_0){\partial \theta_{ijk} \over \partial \vec{r}_k}\\
     \vec{F}_j&=-\vec{F}_i-\vec{F}_k\\
 \end{aligned}
@@ -133,14 +133,14 @@ $$
 \end{aligned}
 $$
 
-Its derivative of $\vec{r}_i$, ${\partial \theta_{ijk}\over \partial \vec{r}_i}$ is (there may be better way to derive this)
+Its derivative of $\vec{r_{i}}$, ${\partial \theta_{ijk}\over \partial \vec{r_{i}}}$ is (there may be better way to derive this)
 
 $$
 \begin{aligned}
-    {\partial \theta_{ijk} \over \partial \vec{r}_i}&=
+    {\partial \theta_{ijk} \over \partial \vec{r_{i}}}&=
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
     {\partial |r_{ji}| \over \partial \vec{r_{ji}}}
-    {\partial \vec{r_{ji}} \over \partial \vec{r}_i}\\
+    {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
 
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
     &={-1 \over \sqrt{1-cos^2\theta_{ijk}}}
@@ -153,10 +153,10 @@ $$
     +{-1 \over |\vec{r_{ji}}|}cos\theta_{ijk})\\
     {\partial |\vec{r_{ji}}| \over \partial \vec{r_{ji}}}
     &={\vec{r_{ji}} \over |r_{ji}|}\\
-    {\partial \vec{r_{ji}} \over \partial \vec{r}_i}
-    &={\partial (\vec{r}_i-\vec{r}_j) \over \partial \vec{r}_i}=1\\
+    {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}
+    &={\partial (\vec{r_{i}}-\vec{r}_j) \over \partial \vec{r_{i}}}=1\\
 
-    {\partial  \theta_{ijk} \over \partial \vec{r}_i}
+    {\partial  \theta_{ijk} \over \partial \vec{r_{i}}}
     &={-1 \over sin\theta_{ijk}}
     ({|\vec{r_{ji}}| \over \vec{r_{ji}}} 
     \cdot {\vec{r_{jk}} \over |\vec{r_{ji}}||\vec{r_{jk}}|}
