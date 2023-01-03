@@ -120,7 +120,7 @@ The forces working to each atoms, $i$, $j$, and $k$ are
 $$
 \begin{aligned}
     \vec{F}_i&=-{\partial U_{angle} \over \partial \vec{r_{i}}}=-2k_{angle}(\theta_{ijk}-\theta_0){\partial \theta_{ijk} \over \partial \vec{r_{i}}}\\
-    \vec{F}_k&=-{\partial U_{angle} \over \partial \vec{r}_{k}}=-2k_{angle}(\theta_{ijk}-\theta_0){\partial \theta_{ijk} \over \partial \vec{r}_k}\\
+    \vec{F}_k&=-{\partial U_{angle} \over \partial \vec{r}_{k}}=-2k_{angle}(\theta_{ijk}-\theta_0){\partial \theta_{ijk} \over \partial \vec{r_{k}}}\\
     \vec{F}_j&=-\vec{F}_i-\vec{F}_k\\
 \end{aligned}
 $$
@@ -141,6 +141,13 @@ $$
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
     {\partial |r_{ji}| \over \partial \vec{r_{ji}}}
     {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
+\end{aligned}
+$$
+
+Where,
+
+$$
+\begin{aligned}
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
     &={-1 \over \sqrt{1-cos^2\theta_{ijk}}}
     ({\partial \vec{r_{ji}} \over \partial |\vec{r_{ji}}|}
@@ -150,10 +157,24 @@ $$
     ({|\vec{r_{ji}}| \over \vec{r_{ji}}}
     \cdot {\vec{r_{jk}} \over |\vec{r_{ji}}||\vec{r_{jk}}|}
     +{-1 \over |\vec{r_{ji}}|}cos\theta_{ijk})\\
+\end{aligned}
+$$
+
+and
+
+$$
+\begin{aligned}
     {\partial |\vec{r_{ji}}| \over \partial \vec{r_{ji}}}
     &={\vec{r_{ji}} \over |r_{ji}|}\\
     {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}
     &={\partial (\vec{r_{i}}-\vec{r_{j}}) \over \partial \vec{r_{i}}}=1\\
+\end{aligned}
+$$
+
+Hence, the derivative of $\theta_{ijk}$ is
+
+$$
+\begin{aligned}
     {\partial  \theta_{ijk} \over \partial \vec{r_{i}}}
     &={-1 \over sin\theta_{ijk}}
     ({|\vec{r_{ji}}| \over \vec{r_{ji}}}
@@ -166,11 +187,11 @@ $$
 \end{aligned}
 $$
 
-Similally, the derivative of $\vec{r}_k$, ${\partial \theta_{ijk}\over \partial \vec{r}_k}$ is calculatable
+Similally, the derivative of $\vec{r_{k}}$, ${\partial \theta_{ijk}\over \partial \vec{r_{k}}}$ is calculatable
 
 $$
 \begin{aligned}
-    {\partial  \theta_{ijk} \over \partial \vec{r}_k}
+    {\partial  \theta_{ijk} \over \partial \vec{r_{k}}}
     &={-1 \over |\vec{r_{jk}}|sin\theta}
     ({\vec{r_{ji}} \over |\vec{r_{ji}}|}
     -{\vec{r_{jk}} \over |\vec{r_{jk}}|}cos\theta_{ijk})\\
