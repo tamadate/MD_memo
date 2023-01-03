@@ -5,29 +5,44 @@ The Lenard-Jones (12-6) pair potential and its forces working on the atoms $i$ a
 $$
 \begin{aligned}
     U_{LJ}&=4 \epsilon_{ij}
-        \{({\sigma_{ij} \over \vec{r_{ij}}})^{12}-
-        ({\sigma_{ij} \over \vec{r_{ij}}})^{6}\}\\
+        \{({\sigma_{ij} \over |\vec{r_{ij}}|})^{12}-
+        ({\sigma_{ij} \over |\vec{r_{ij}}|})^{6}\}\\
     \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r_{i}}}=
-        48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}
-        -24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
+        48\epsilon_{ij}{\sigma_{ij}^{12} \over |\vec{r_{ij}}|^{13}}
+        {\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}
+        -24\epsilon_{ij}{\sigma_{ij}^{6} \over |\vec{r_{ij}}|^{7}}
+        {\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}\\
     \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r_{j}}}=
-        48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}
-        -24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}
-        {\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}\\
+        48\epsilon_{ij}{\sigma_{ij}^{12} \over |\vec{r_{ij}}|^{13}}
+        {\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}
+        -24\epsilon_{ij}{\sigma_{ij}^{6} \over |\vec{r_{ij}}|^{7}}
+        {\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}\\
 \end{aligned}
 $$
 
-Where, $\epsilon_{ij}$ and $\sigma_{ij}$ are the Lennard-Jones potential parameters and $\vec{r_{ij}}$ is the distance between atoms $i$ and $j$. Since $\vec{r_{ij}}=\vec{r_{j}}-\vec{r_{i}}$, the derivatives can be calculated as ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}=1$, hence,
+Where, $\epsilon_{ij}$ and $\sigma_{ij}$ are the Lennard-Jones potential parameters and $\vec{r_{ij}}$ is the distance between atoms $i$ and $j$.  And derivarivatives are
+
+$$
+{\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}=
+{\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}{\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
+{\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}=
+{\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}{\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}
+$$
+
+Where, ${\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}=
+{\vec{r_{ij}} \over |\vec{r_{ij}}|}$
+and $\vec{r_{ij}}=\vec{r_{j}}-\vec{r_{i}}$ make last derivatives to ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}=1$, respectively.  In summary, the equation is
 
 $$
 \begin{aligned}
-    \vec{F}_i&=-48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
-        +24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}\\
-    \vec{F}_j&=48\epsilon_{ij}{\sigma_{ij}^{12} \over \vec{r_{ij}}^{13}}
-        -24\epsilon_{ij}{\sigma_{ij}^{6} \over \vec{r_{ij}}^{7}}\\
+    \vec{F}_i&=-48\epsilon_{ij}{\sigma_{ij}^{12} \over |\vec{r_{ij}}|^{13}}
+        {\vec{r_{ij}} \over |\vec{r_{ij}}|}
+        +24\epsilon_{ij}{\sigma_{ij}^{6} \over |\vec{r_{ij}}|^{7}}
+        {\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
+    \vec{F}_j&=48\epsilon_{ij}{\sigma_{ij}^{12} \over |\vec{r_{ij}}|^{13}}
+        {\vec{r_{ij}} \over |\vec{r_{ij}}|}
+        -24\epsilon_{ij}{\sigma_{ij}^{6} \over |\vec{r_{ij}}|^{7}}
+        {\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
 \end{aligned}
 $$
 
@@ -37,22 +52,24 @@ The Coulombic pair potential and its forces are expressed as below:
 
 $$
 \begin{aligned}
-    U_{Coul}&={q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}}\\
+    U_{Coul}&={q_iq_j \over 4 \pi \epsilon_0}{1 \over |\vec{r_{ij}}|}\\
     \vec{F}_i&=-{\partial U_{LJ} \over \partial \vec{r_{i}}}=
-        {q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}
-        {\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
+        {q_iq_j \over 4 \pi \epsilon_0}{1 \over |\vec{r_{ij}}|^2}
+        {\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}\\
     \vec{F}_j&=-{\partial U_{LJ} \over \partial \vec{r_{j}}}=
-        {q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}
-        {\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}\\
+        {q_iq_j \over 4 \pi \epsilon_0}{1 \over |\vec{r_{ij}}|^2}
+        {\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}\\
 \end{aligned}
 $$
 
-Where, $\epsilon_0$ is the permittivity of vacuum, $q_i$ and $q_j$ are the partial charges of atoms $i$ and $j$, $\vec{r_{ij}}$ is the distance of atoms $i$ and $j$. Since $\vec{r_{ij}}=\vec{r_{j}}-\vec{r_{i}}$, the derivatives can be calculated as ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}=1$, hence,
+Where, $\epsilon_0$ is the permittivity of vacuum, $q_i$ and $q_j$ are the partial charges of atoms $i$ and $j$.  Similar to Lennard-Jones potential, transforming the last derivatives yields:
 
 $$
 \begin{aligned}
-    \vec{F}_i&=-{q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}\\
-    \vec{F}_j&={q_iq_j \over 4 \pi \epsilon_0}{1 \over \vec{r_{ij}}^2}\\
+    \vec{F}_i&=-{q_iq_j \over 4 \pi \epsilon_0}{1 \over |\vec{r_{ij}}|^2}
+    {\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
+    \vec{F}_j&={q_iq_j \over 4 \pi \epsilon_0}{1 \over |\vec{r_{ij}}|^2}
+    {\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
 \end{aligned}
 $$
 
