@@ -25,14 +25,15 @@ $$
 Where, $\epsilon_{ij}$ and $\sigma_{ij}$ are the Lennard-Jones potential parameters and $\vec{r_{ij}}$ is the distance between atoms $i$ and $j$.  And derivarivatives are
 
 $$
-{\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}=
-{\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}{\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
-{\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}=
-{\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}{\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}
+\begin{aligned}
+    {\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}&=
+    {\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}{\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}\\
+    {\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}&=
+    {\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}{\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}
+\end{aligned}
 $$
 
-Where, ${\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}=
-{\vec{r_{ij}} \over |\vec{r_{ij}}|}$ (see appendix 1)
+Where, ${\partial |\vec{r_{ij}}| \over \partial \vec{r_{ij}}}={\vec{r_{ij}} \over |\vec{r_{ij}}|}$ (see appendix 1)
 and $\vec{r_{ij}}=\vec{r_{j}}-\vec{r_{i}}$ make last derivatives to ${\partial \vec{r_{ij}} \over \partial \vec{r_{i}}}=-1$ and ${\partial \vec{r_{ij}} \over \partial \vec{r_{j}}}=1$, respectively.  In summary, the equation is
 
 $$
