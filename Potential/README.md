@@ -77,6 +77,27 @@ $$
 
 While the electrical interaction is able to directory calculate via above equation, the force working for long distance (proportional to $r^{-2}$ which is not converged immediately). Hence, in MD simulation the Ewaled method is generally applied for Coulomb interaction calculation. However, the Ewald method is not applicable if the total system charge is not neutral. Also, the Ewald method is not best choice for the infinity diluted particle calculation system, e.g., aerosol simulation.
 
+## 1.3 Buckingham
+The Buckingham pair potential is described below
+
+$$
+    U _{Buck}=A\exp \left(-B|\vec{r_{ij}|}\right)-{\frac {C}{|\vec{r_{ij}|}^{6}}}
+$$
+
+Where, A, B, and C are potential parameters.  The first and second terms of right hand show the repulsion and attractive potentials, respectively.  Its force is:
+
+$$
+\begin{aligned}
+    \vec{F}_i&=-{\partial U_{Buck} \over \partial \vec{r_{i}}}=
+        -AB\exp \left(-B\vec{r_{ij}}\right){\vec{r_{ij}} \over |\vec{r_{ij}}|}
+        +6{\frac {C}{\vec{r_{ij}}^{7}}}{\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
+    \vec{F}_j&=-{\partial U_{Buck} \over \partial \vec{r_{j}}}=
+        AB\exp \left(-B\vec{r_{ij}}\right){\vec{r_{ij}} \over |\vec{r_{ij}}|}
+        -6{\frac {C}{\vec{r_{ij}}^{7}}}{\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
+\end{aligned}
+$$
+
+
 # 2. Many body interaction
 ## 2.1 EAM
 
@@ -106,7 +127,7 @@ $$
 \end{aligned}
 $$
 
-$f_C(r_{ij})$ is the smoothing function. The first term of right hand of the potential equations $f_R(r_{ij})$ is the repulsion potential and second term $b_{ij}f_A(r_{ij})$ is the attractive potential working between atoms $i$ and $j$ but the attractive term is depended on the third atoms, $k$ locations. $R$, $D$, $A$, $B$, $\lambda_1$, $\lambda_2$, $\lambda_3$, $n$, $c$, $d$, and $h$ are the Tersoff potential parameters. In Tersoff potential, $r_{ij}=|\vec{r_{ij}}|$ and $r_{ik}=|\vec{r_{ik}}|$ is used.
+$f_C(r_{ij})$ is the smoothing function. The first term of right hand of the potential equations $f_R(r_{ij})$ is the repulsion potential and second term $b_{ij}f_A(r_{ij})$ is the attractive potential working between atoms $i$ and $j$ but the attractive term is depended on the third atoms, $k$ locations. $R$, $D$, $A$, $B$, $\lambda_1$, $\lambda_2$, $\lambda_3$, $n$, $c$, $d$, and $h$ are the Tersoff potential parameters. In Tersoff potential, $r_{ij}=|\vec{r_{ij}}|$ and $r_{ik}=|\vec{r_{ik}}|$ are used.
 ## 2.2 Stillinger-Weber
 
 # 3. Bond potential
@@ -115,20 +136,24 @@ The harmonic bond potential and forces working to two atoms are expressed as bel
 
 $$
 \begin{aligned}
-U_{bond}&=k_{bond}(\vec{r_{ji}}-r_0)^2\\
-\vec{F}_i&=-{\partial U_{bond} \over \partial \vec{r_{i}}}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
-\vec{F}_j&=-{\partial U_{bond} \over \partial \vec{r_{j}}}=-2k_{bond}(\vec{r_{ji}}-r_0){\partial \vec{r_{ji}} \over \partial \vec{r_{j}}}\\
+U_{bond}&=k_{bond}(|\vec{r_{ij}|}-r_0)^2\\
+\vec{F}_i&=-{\partial U_{bond} \over \partial \vec{r_{i}}}=-2k_{bond}(|\vec{r_{ij}}|-r_0){\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}\\
+\vec{F}_j&=-{\partial U_{bond} \over \partial \vec{r_{j}}}=-2k_{bond}(|\vec{r_{ij}}|-r_0){\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}\\
 \end{aligned}
 $$
 
-Since $\vec{r_{ji}}=\vec{r_{i}}-\vec{r_{j}}$, the derivatives can be calculated as ${\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}=1$ and ${\partial \vec{r_{ji}} \over \partial \vec{r_{j}}}=-1$, hence,
+Since ${\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}=-{\vec{r_{ij}} \over |\vec{r_{ij}}|}$ and ${\partial |\vec{r_{ij}}| \over \partial \vec{r_{j}}}={\vec{r_{ij}} \over |\vec{r_{ij}}|}$ (see Lennard-Jones potential),
 
 $$
-\begin{aligned}
-\vec{F}_i&=-2k_{bond}(\vec{r_{ji}}-r_0)\\
-\vec{F}_j&=2k_{bond}(\vec{r_{ji}}-r_0)
-\end{aligned}
+    \begin{aligned}
+        \vec{F}_i&=2k_{bond}(\vec{r_{ji}}-r_0)
+            {\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
+        \vec{F}_j&=-2k_{bond}(\vec{r_{ji}}-r_0)
+            {\vec{r_{ij}} \over |\vec{r_{ij}}|}\\
+    \end{aligned}
 $$
+
+## 3.2 Morse
 
 # 4. Angle potential
 ## 4.1 Harmonic
@@ -163,12 +188,11 @@ $$
 \begin{aligned}
     {\partial \theta_{ijk} \over \partial \vec{r_{i}}}&=
     {\partial \theta_{ijk} \over \partial |r_{ji}|}
-    {\partial |r_{ji}| \over \partial \vec{r_{ji}}}
-    {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}\\
+    {\partial |r_{ji}| \over \partial \vec{r_{i}}}\\
 \end{aligned}
 $$
 
-Where,
+Where, first component of right hand, ${\partial \theta_{ijk} \over \partial |r_{ji}|}$ is
 
 $$
 \begin{aligned}
@@ -184,18 +208,7 @@ $$
 \end{aligned}
 $$
 
-and
-
-$$
-\begin{aligned}
-    {\partial |\vec{r_{ji}}| \over \partial \vec{r_{ji}}}
-    &={\vec{r_{ji}} \over |r_{ji}|}\\
-    {\partial \vec{r_{ji}} \over \partial \vec{r_{i}}}
-    &={\partial (\vec{r_{i}}-\vec{r_{j}}) \over \partial \vec{r_{i}}}=1\\
-\end{aligned}
-$$
-
-Hence, the derivative of $\theta_{ijk}$ is
+Second component is  ${\partial |\vec{r_{ij}}| \over \partial \vec{r_{i}}}=-{\vec{r_{ij}} \over |\vec{r_{ij}}|}$, hence, the differentiation of $\theta_{ijk}$ with respect to $\vec{r_{i}}$ become
 
 $$
 \begin{aligned}
@@ -211,7 +224,7 @@ $$
 \end{aligned}
 $$
 
-Similally, the derivative of $\vec{r_{k}}$, ${\partial \theta_{ijk}\over \partial \vec{r_{k}}}$ is calculatable
+The differentiation of $\theta_{ijk}$ with respect to $\vec{r_{k}}$, ${\partial \theta_{ijk}\over \partial \vec{r_{k}}}$ is similarly calculated
 
 $$
 \begin{aligned}
@@ -242,7 +255,7 @@ $$
 
 # appendix
 ## appendix 1: Derivation of ${\partial |\vec{r}| \over \partial \vec{r}}={\vec{r} \over |\vec{r}|}$
-Since the definition of $\vec{r}$, $\vec{r}=(x,y,z)$, the differentiation of $\vec{r}$ with respect to $|\vec{r}|$
+Since the definition, $\vec{r}=(x,y,z)$, the differentiation of $\vec{r}$ with respect to $|\vec{r}|$ is
 
 $$
 {\partial \vec{r} \over \partial |\vec{r}|}=
@@ -269,3 +282,4 @@ $$
     {|\vec{r}| \over \vec{r}}\\
 $$
 
+The inverses of this equation is desired form.
