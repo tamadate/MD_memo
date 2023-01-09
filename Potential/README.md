@@ -120,8 +120,8 @@ $$
         {1 \over 2}-{1 \over 2}sin\left({\pi \over 2}{r-R \over D}\right) & (R-D<r<R+D) \\
         0 & (r>R+D)
     \end{cases} \\
-    f_R(r_{ij})&=Aexp(-\lambda_1r_{ij})\\
-    f_A(r_{ij})&=-Bexp(-\lambda_2r_{ij})\\
+    f_R(r_{ij})&=A\exp(-\lambda_1r_{ij})\\
+    f_A(r_{ij})&=-B\exp(-\lambda_2r_{ij})\\
     b_{ij}&=(1+\beta^n\zeta_{ij}^{n})^{-{1 \over 2n}}\\
     \zeta_{ij}&=\sum_{k \neq j}f_C(r_{ik})g(\theta_{jik})exp\left[\lambda_3^3(r_{ij}-r_{ik})^3\right]\\
     g(\theta_{ijk})&=1+{c^2 \over d^2}-{c^2 \over d^2+\left[h-cos(\theta_{jik})\right]^2}\\
@@ -155,6 +155,37 @@ $$
 $$
 
 ## 3.2 Morse
+
+$$
+    \begin{aligned}
+        U_{Morse}&=D_{e}\left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]^2\\
+        a&=\sqrt{\frac{k_e}{2D_e}}
+    \end{aligned}
+$$
+
+$$
+    \begin{aligned}
+        \vec{F}_i&=-\frac{\partial U_{Morse}}{\partial \vec{r_i}}\\
+        &=-2D_{e}\left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]
+        \frac{\partial \left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]}{\partial \vec{r_i}}\\
+        &=2D_{e}
+        \left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]
+        e^{-a(|\vec{r_{ij}}|-r_{e})}
+        \frac{\partial \left[-a(|\vec{r_{ij}}|-r_{e})\right]}{\partial \vec{r_i}}\\
+        &=-2aD_{e}
+        \left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]
+        e^{-a(|\vec{r_{ij}}|-r_{e})}
+        \frac{\partial |\vec{r_{ij}}|}{\partial \vec{r_i}}\\
+        &=2aD_{e}
+        \left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]
+        e^{-a(|\vec{r_{ij}}|-r_{e})}
+        \frac{\vec{r_{ij}}}{|\vec{r_{ij}}|}\\
+        \vec{F}_j&=-2aD_{e}
+        \left[1-e^{-a(|\vec{r_{ij}}|-r_{e})}\right]
+        e^{-a(|\vec{r_{ij}}|-r_{e})}
+        \frac{\vec{r_{ij}}}{|\vec{r_{ij}}|}\\
+    \end{aligned}
+$$
 
 # 4. Angle potential
 ## 4.1 Harmonic
